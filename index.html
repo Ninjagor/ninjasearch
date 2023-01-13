@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NinjaSearch</title>
+  <script src="https://kit.fontawesome.com/3149170a21.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>NinjaSearch</h1>
+  <div class="searchbar">
+    <input type="text" placeholder="Enter search here" id="search1">
+    <button onclick="goToSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+  <div class="trending">
+    <p>Discover Something New</p>
+    <div class="tgrid">
+      <div class="tgitem" onclick="window.location.replace('https://www.youtube.com')">
+        <img src="YTimg.png">
+        <div class="overlay"></div>
+        <p>Trending YouTube</p>
+      </div>
+      <div class="tgitem" onclick="window.location.replace('https://finance.yahoo.com/news/know-beyond-why-micron-technology-140002288.html')">
+        <img src="YahooImg.png">
+        <div class="overlay"></div>
+        <p>Latest Finance Updates</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goToSearch() {
+ let query = document.getElementById('search1').value;
+  if (!query.trim() == "") {
+    window.location.replace(`search.html?q=${query}`)
+  }
+}
+  </script>
+</body>
+</html>
