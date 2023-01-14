@@ -9,13 +9,17 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <h1>NinjaSearch</h1>
+  <div class="header">
+    <img src="logo.png" alt="logo" id="logo">
+    <h1>Ninja<span>Search</span></h1></div>
   <div class="searchbar">
     <input type="text" placeholder="Enter search here" id="search1">
     <button onclick="goToSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <div class="dropdowns" id="dropdowns">
+    </div>
   </div>
   <div class="trending">
-    <p>Discover Something New</p>
+    <p id="d">Discover Something New</p>
     <div class="tgrid">
       <div class="tgitem" onclick="window.location.replace('https://www.youtube.com')">
         <img src="YTimg.png">
@@ -30,12 +34,40 @@
     </div>
   </div>
   <script>
+    if (!localStorage.getItem('search-history')) {
+  localStorage.setItem('search-history', JSON.stringify([]))
+}
     function goToSearch() {
  let query = document.getElementById('search1').value;
   if (!query.trim() == "") {
+    let history = JSON.parse(localStorage.getItem('search-history'));
+    history.push(query);
+    localStorage.removeItem('search-history');
+    localStorage.setItem('search-history', JSON.stringify(history))
     window.location.replace(`search.html?q=${query}`)
   }
 }
+  </script>
+
+  <script>
+    let history = JSON.parse(localStorage.getItem('search-history'));
+    history = history.reverse()
+    let dropdowns = document.getElementById('dropdowns')
+    let length = 0;
+    if (history.length > 5) {
+      length = 5;
+    } else {
+      length = history.length
+    }
+    for (let i = 0; i<length; i++) {
+      let curr = history[i];
+      let dropdown = document.createElement('div')
+      dropdown.classList.add('dropdown');
+      dropdown.setAttribute('onclick', `window.location.replace('search.html?q=${curr}')`)
+      dropdown.innerHTML = `<i class="fa-solid fa-clock-rotate-left"></i> ${curr}`
+      console.log(dropdown)
+      dropdowns.appendChild(dropdown);
+    }
   </script>
 </body>
 </html>

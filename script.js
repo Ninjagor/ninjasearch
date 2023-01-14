@@ -8,7 +8,9 @@ function search() {
     if (!query) {
       window.location.replace('index.html')
     }
+    
    if (!query.trim() == "") {
+    document.getElementById('search1').value = query;
     fetch(`https://rohit11.pythonanywhere.com/search/${query}`, {
       method: 'GET',
       headers: {
@@ -24,6 +26,7 @@ function search() {
     document.getElementById('RND').style.display = "block";
     let endTime = performance.now();
     document.getElementById('RND').textContent += ` in ${endTime/1000} seconds`;
+
     for (i in response) {
       let curr = response[i]
       let div = document.createElement('div')
