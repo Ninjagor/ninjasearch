@@ -38,13 +38,15 @@ body {
   left: 0;
   z-index: 10000;
   border-radius: 0 0 15px 15px;
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
   background-color: #282828;
-  border: 1px solid #333333;
+  border: 0px solid #333333;
   display: none;
   border-top: none;
   overflow-y: auto;
   overflow-x: hidden;
+  /* height: 0px; */
+  /* transition: height 2s ease; */
 }
 
 .dropdown {
@@ -67,6 +69,8 @@ body {
 
 .searchbar input:focus~ .dropdowns{
   display: block;
+  height: fit-content !important;
+  border: 1px solid #333333;
 }
 
 .searchbar input:focus~ button {
@@ -117,11 +121,36 @@ h1 span {
   align-items: center;
   justify-content: baseline;
   gap: 20px;
+  /* background-color: red; */
+  flex-direction: row-reverse;
+  cursor: pointer;
 }
 
 .header img {
   width: 55px;
   height: 55px;
+}
+
+.header:hover h1 {
+  cursor: pointer;
+  letter-spacing: 4px;
+}
+
+.header h1 {
+  transition: all .3s ease;
+}
+
+.header:hover #logo {
+  animation: spin 0.5s ease;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .tgrid {

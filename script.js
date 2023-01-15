@@ -1,5 +1,5 @@
 function search() {
-    document.getElementById('results').innerHTML = "Querying..."
+    document.getElementById('querying').style.display = "block"
     document.getElementById('RND').style.display = "none";
     let startTime = performance.now()
     // let query1 = document.getElementById('search').value;
